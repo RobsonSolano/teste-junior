@@ -1,0 +1,62 @@
+<div class="row d-flex justify-content-center my-3">
+    <div class="col-md-8 col-12 text-center border-bottom">
+        <h4>Listagem de movimentação</h4>
+    </div>
+</div>
+<div class="row d-flex justify-content-center mt-2 mb-5">
+    <div class="col-12 col-md-8 col-lg-6 d-flex justify-content-center">
+        <a href="/admin/extract/create?id=<?= $this->view->extratos['data'][0]['id'] ?>" class="btn btn-success mb-2">Cadastrar
+            movimentação</a>
+    </div>
+    <div class="col-12 col-md-10 px-4 d-flex justify-content-center">
+        <table class="table table-striped p-2 m-2" id="tabelas">
+            <thead class="thead-dark rounded-top">
+                <tr scope="row">
+                    <th scope="col">id</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Observação</th>
+                    <th scope="col">Funcionário</th>
+                    <th scope="col" class="d-none d-block-md">Data de criação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // echo json_encode($this->view->extratos);
+                $tot = 0;
+                $qtd = $this->view->extratos['qtd'];
+                while ($tot < $qtd) { ?>
+                    <tr>
+                        <td><?= $this->view->extratos['data'][$tot]['id'] ?></td>
+                        <td><?= $this->view->extratos['data'][$tot]['tipo_movimentacao'] ?></td>
+                        <td>R$ <?= number_format($this->view->extratos['data'][$tot]['valor'], 2, ',', '.') ?></td>
+                        <td><?= $this->view->extratos['data'][$tot]['observacao'] ?></td>
+                        <td><?= $this->view->extratos['data'][$tot]['nome_completo'] ?></td>
+                        <td class="d-none d-block-md"><?= $this->view->extratos['data'][$tot]['data_criacao'] ?></td>
+
+                    </tr>
+                <?php $tot++;
+                }
+                ?>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-10 px-4">
+        <?php
+        if ($qtd == 0) {
+        ?>
+            <div class="alert alert-danger  alert-dismisseble text-center" role="alert">
+                <button class="close" type="button" data-dismiss="alert">
+                    &times;
+                </button>
+                Nenhuma movimentação encontrada
+            </div>
+        <?php
+        } ?>
+        <a href="/admin/funcionarios" class="btn btn-info">Voltar</a>
+    </div>
+</div>

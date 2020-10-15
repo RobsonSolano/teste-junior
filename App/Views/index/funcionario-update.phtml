@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-12 col-md-8 text-center my-3">
+            <h3 class="border-bottom">
+                Cadastro do funcionário
+            </h3>
+        </div>
+
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+
+        <?php $funcionario = $this->view->data;?>
+        <div class="col-12 col-md-8">
+            <?php if(isset($this->view->msgError )){ ?>
+            <div class="alert alert-danger  alert-dismisseble" role="alert">
+                <button class="close" type="button" data-dismiss="alert">
+                    &times;
+                </button> <?= $this->view->msgError  ?>
+            </div>
+            <?php } ?>
+            <?php if(isset($this->view->msgSuccess )){ ?>
+            <div class="alert alert-success  alert-dismisseble" role="alert">
+                <button class="close" type="button" data-dismiss="alert">
+                    &times;
+                </button> <?= $this->view->msgSuccess  ?>
+            </div>
+            <?php } ?>
+            <form role="form" action="/admin/funcionario/update?id=<?= $funcionario[0]['id'] ?>" method="post">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="nome_completo">Nome</label>
+                        <input type="text" class="form-control" id="nome_completo" name="nome_completo"
+                            placeholder="Digite o nome" value="<?= $funcionario[0]['nome_completo'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="login">Login / E-mail</label>
+                        <input type="email" class="form-control" id="login" name="login" placeholder="Digite o login"
+                            value="<?= $funcionario[0]['login'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="saldo_atual">Saldo atual</label>
+                        <input type="number" class="form-control" min="0" id="saldo_atual" name="saldo_atual"
+                            placeholder="Digite o saldo" value="<?= $funcionario[0]['saldo_atual'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="admin">Cadastrado por</label>
+                        <input type="text" class="form-control" readonly id="admin" name="admin" placeholder="admin"
+                            value="<?= $this->view->adminPeloId ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_criacao">Data de cadastro</label>
+                        <?php $data_cadastro = date('d-m-Y', strtotime($funcionario[0]['data_criacao'])) ?>
+                        <input type="text" class="form-control" id="data_criacao" readonly name="data_criacao"
+                            placeholder="Data Criação" value="<?= str_replace("-","/",$data_cadastro) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_alteracao">Data ultima atualização</label>
+                        <?php $data_alteracao = date('d-m-Y', strtotime($funcionario[0]['data_alteracao'])) ?>
+                        <input type="text" class="form-control" id="data_alteracao" readonly name="data_alteracao"
+                            placeholder="Data de alteração" value="<?= str_replace("-","/",$data_alteracao) ?>">
+                    </div>
+                </div>
+                
+                <div class="row d-flex justify-content-around">
+                    <a href="/admin/funcionarios" class="btn btn-info text-white">Voltar</a>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

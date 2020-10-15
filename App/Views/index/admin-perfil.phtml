@@ -1,0 +1,42 @@
+<div class="row d-flex justify-content-center mt-5">
+
+    <div class="col-12 col-md-8 text-center my-3">
+        <h3 class="border-bottom">
+            Perfil do administrador
+        </h3>
+    </div>
+
+</div>
+<div class="row d-flex justify-content-center px-4">
+
+    <div class="col-12 col-md-8">
+        <form role="form" action="/admin/funcionario/<?= $this->view->infoAdmin['id'] ?>" method="post">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="nome_completo">Nome</label>
+                    <input type="text" class="form-control" id="nome_completo" name="nome_completo"
+                        placeholder="Digite o nome" value="<?= $this->view->infoAdmin['nome_completo'] ?>">
+                </div>  
+                <div class="form-group">
+                    <label for="login">Login / E-mail</label>
+                    <input type="email" class="form-control" id="login" name="login" placeholder="Digite o login"
+                        value="<?= $this->view->infoAdmin['login'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="data_criacao">Data de cadastro</label>
+                    <input type="text" class="form-control" id="data_criacao" readonly name="data_criacao"
+                        placeholder="Digite o e-mail" value="<?= $this->view->infoAdmin['data_criacao'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="data_alteracao">Data ultima atualização</label>
+                    <input type="text" class="form-control" id="data_alteracao" readonly name="data_alteracao"
+                        placeholder="Digite o e-mail" value="<?= $this->view->infoAdmin['data_alteracao'] ?>">
+                </div>
+                <div class="form-group">
+                    <a href="/" class="btn btn-info text-white">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

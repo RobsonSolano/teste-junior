@@ -1,0 +1,119 @@
+<div class="row bg-white border p-2 d-flex justify-content-center">
+    <div class="col-9 col-md-9 ">
+        <h5 class="mt-4 text-secondary">
+            <img src="/Public/img/Challenge_Logo.png" title="Desafio Nano" width="80" height="60" class="m-2"><strong>D</strong>esafio <strong></strong>N</strong>ano
+        </h5>
+    </div>
+    <div class="col-12 col-md-3 mb-3">
+
+        <form class="mt-3 align-self-center" method="POST" id="formMonth">
+            <div class="input-group">
+                <select name="MonthSelect" id="MonthSelect" class="nav-link
+                    form-control">
+                    <option disabled selected class="form-control">Selecione
+                        o mes</option>
+                    <option value="Janeiro" id="Month" class="form-control">Janeiro</option>
+                    <option value="Fevereiro" id="Month" class="form-control">Fevereiro</option>
+                    <option value="Março" id="Month" class="form-control">Março</option>
+                    <option value="Abril" id="Month" class="form-control">Abril</option>
+                    <option value="Maio" id="Month" class="form-control">Maio</option>
+                    <option value="Junho" id="Month" class="form-control">Junho</option>
+                    <option value="Julho" id="Month" class="form-control">Julho</option>
+                    <option value="Agosto" id="Month" class="form-control">Agosto</option>
+                    <option value="Setembro" id="Month" class="form-control">Setembro</option>
+                    <option value="Agosto" id="Month" class="form-control">Outubro</option>
+                </select>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-light rounded-right border">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="row my-4 bg-white mb-2 px-2 border-bottom  d-flex justify-content-around">
+    <div class="col-12 col-md-4">
+
+        <div class="card shadow">
+            <div class="card-header">
+                <div class="card-title text-center">
+                    <p>
+                        Funcionarios cadastrados
+                    </p>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <h4><?= $this->view->qtdFuncs ?></h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow">
+            <div class="card-header text-center">
+                <p>
+                    Movimentações de entrada
+                </p>
+
+            </div>
+            <div class="card-body text-center">
+                <h4><?= $this->view->qtdEntra ?></h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow">
+            <div class="card-header">
+                <div class="card-title text-center">
+                    <p>
+                        Movimentações de saída
+                    </p>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <h4><?= $this->view->qtdSaida ?></h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center my-5">
+    <div class="col-12 col-md-6 col-xl-8">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        datasets: [{
+            label: 'Quadro de funcionarios',
+            backgroundColor: 'transparent',
+            borderColor: '#86FF9B',
+            data: [5, 15, 8, 7, 16, 7, 12]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        layout: {
+            padding: {
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        }
+    }
+});
+</script>

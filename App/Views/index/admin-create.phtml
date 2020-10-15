@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Desafio / Login</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1,
+            user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="img/Challenge_Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Public/css/main.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body class="loginarea">
+    <div cla ss="container">
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="card p-3">
+                <div class="card-header">
+                    <img src="/Public/img/Challenge_Logo.png" width="120" title="Autendicação">
+                </div>
+                <div class="card-body">
+                    <!-- /.login-logo -->
+                    <div class="login-box-body">
+                        <p class="login-box-msg">Crie um novo admin
+                        </p>
+                        <?php if(isset($this->view->msgError )){ ?>
+                        <div class="alert alert-danger  alert-dismisseble" role="alert">
+                            <button class="close" type="button" data-dismiss="alert">
+                                &times;
+                            </button> <?= $this->view->msgError  ?>
+                        </div>
+                        <?php } ?>
+                        <?php if(isset($this->view->msgSuccess )){ ?>
+                        <div class="alert alert-success  alert-dismisseble" role="alert">
+                            <button class="close" type="button" data-dismiss="alert">
+                                &times;
+                            </button> <?= $this->view->msgSuccess  ?>
+                        </div>
+                        <?php } ?>
+                        <form action="/admin/create/save/" method="post">
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" required placeholder="Nome completo"
+                                    name="nome_completo">
+                                <span id="feedbacklogin"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="email" class="form-control" required placeholder="Login" name="login">
+                                <span id="feedbacklogin"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" class="form-control" required placeholder="Password"
+                                    name="password">
+                                <span id="feedbackpassword"></span>
+                            </div>
+
+                            <div class="row">
+                                <button type="submit" class="btn
+                                        btn-primary
+                                        btn-block btn-flat">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+
+                    <a href="/admin/login">Já possui login?</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

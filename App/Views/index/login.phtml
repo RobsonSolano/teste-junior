@@ -1,0 +1,57 @@
+<div class="container mt-3">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 col-md-4">
+            <div class="card p-2">
+                <div class="card-header bg-white">
+                    <img src="/Public/img/Challenge_Logo.png" width="120" title="Autendicação">
+                </div>
+                <div class="card-body">
+                    <!-- /.login-logo -->
+                    <div class="login-box-body">
+                        <p class="login-box-msg">Faça login para acessar
+                        </p>
+                        <?php if(isset($this->view->loginError)){ ?>
+                        <div class="alert alert-danger alert-dismisseble">
+                            <button class="close" type="button" data-dismiss="alert">
+                                &times;
+                            </button>
+                            <?= $this->view->loginError ?>
+                        </div>
+                        <?php } ?>
+                        <form action="/admin/logar/" method="post">
+                            <div class="form-group has-feedback">
+                                <input type="email" class="form-control" placeholder="Login" required name="login">
+                                <span id="feedbacklogin"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" class="form-control" required placeholder="Password"
+                                    name="password">
+                                <span id="feedbackpassword"></span>
+                            </div>
+                            <div class="row">
+                                <div class="checkbox icheck">
+                                    <label>
+                                        <input type="checkbox"> Lembrar
+                                        acesso
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="btn
+                                        btn-primary
+                                        btn-block btn-flat">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+
+                    <a href="/admin/forgot/">Esqueceu a senha?</a><br>
+                    <a href="/admin/create" class="text-center">Registrar
+                        novo administrador</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.login-box-body -->
+</div>

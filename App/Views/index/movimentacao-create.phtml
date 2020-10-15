@@ -1,0 +1,54 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="row d-flex justify-content-center my-3">
+    <div class="col-md-8 col-10">
+        <div class="box box-success">
+            <div class="box-header with-border mt-2 text-center">
+                <h3 class="box-title text-secondary border-bottom">Nova movimentação
+                </h3>
+            </div>
+            <?php if (isset($this->view->msgError)) { ?>
+                <div class="alert alert-danger  alert-dismisseble" role="alert">
+                    <button class="close" type="button" data-dismiss="alert">
+                        &times;
+                    </button> <?= $this->view->msgError  ?>
+                </div>
+            <?php } ?>
+            <?php if (isset($this->view->msgSuccess)) { ?>
+                <div class="alert alert-success  alert-dismisseble" role="alert">
+                    <button class="close" type="button" data-dismiss="alert">
+                        &times;
+                    </button> <?= $this->view->msgSuccess  ?>
+                </div>
+            <?php } ?>
+
+            <!-- Formulário para cadastro de despesa -->
+            <form role="form" action="/admin/extract/create/post/" method="post">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="tipo_movimentacao">Tipo
+                            da movimentação</label>
+                        <select name="tipo_movimentacao" id="tipo_movimentacao" required class="form-control">
+                            <option value="entrada" selected class="form-control">Entrada</option>
+                            <option value="saida" class="form-control">Saída</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="valor">Valor</label>
+                        <input type="text" min="0" class="form-control" required id="valor" name="valor" placeholder="Digite o valor: 0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="observacao">Observação</label>
+                        <textarea class="form-control" id="observacao" required name="observacao" placeholder=""></textarea>
+                    </div>
+                    <input type="hidden" name="funcionario_id" value="<?= $this->view->idfunc ?>">
+                    <input type="hidden" name="administrador_id" value="<?= $this->view->idadmin ?>">
+                </div>
+                <div class="row d-flex justify-content-around">
+                    <a href="/admin/funcionarios" class="btn btn-info text-white">Voltar</a>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </div>
+            </form>
+            <!-- Fim do formulário -->
+        </div>
+    </div>
+</div>

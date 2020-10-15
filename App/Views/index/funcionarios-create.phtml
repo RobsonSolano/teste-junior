@@ -1,0 +1,49 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="row d-flex justify-content-center mt-3">
+    <div class="col-md-8 col-10">
+        <div class="box box-success">
+            <div class="box-header with-border mt-2 text-center">
+                <h3 class="box-title text-secondary border-bottom">Novo Usuário</h3>
+            </div>
+            <?php if (isset($this->view->cadError)) { ?>
+                <div class="alert alert-danger  alert-dismisseble" role="alert">
+                    <button class="close" type="button" data-dismiss="alert">
+                        &times;
+                    </button> <?= $this->view->cadError  ?>
+                </div>
+            <?php } ?>
+            <?php if (isset($this->view->cadSuccess)) { ?>
+                <div class="alert alert-success  alert-dismisseble" role="alert">
+                    <button class="close" type="button" data-dismiss="alert">
+                        &times;
+                    </button> <?= $this->view->cadSuccess  ?>
+                </div>
+            <?php } ?>
+            <form role="form" action="/admin/funcionario/cadastro/" method="post">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="nome_completo">Nome</label>
+                        <input type="text" class="form-control" id="nome_completo" required name="nome_completo" placeholder="Digite o nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="login">Login</label>
+                        <input type="email" class="form-control" id="login" required name="login" placeholder="Digite o e-mail">
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" id="senha" required name="senha" placeholder="Digite a senha">
+                    </div>
+                    <div class="form-group">
+                        <label for="saldo_atual">Saldo Atual</label>
+                        <input type="number" class="form-control" required id="saldo_atual" min="0" name="saldo_atual" placeholder="Digite o saldo atual">
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-around">
+                    <a href="/admin/funcionarios" class="btn btn-info text-white">Voltar</a>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

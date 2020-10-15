@@ -1,0 +1,140 @@
+<script>
+    function mascaraData(campo, e) {
+        var kC = (document.all) ? event.keyCode : e.keyCode;
+        var data = campo.value;
+
+        if (kC != 8 && kC != 46) {
+            if (data.length == 2) {
+                campo.value = data += '/';
+            } else if (data.length == 5) {
+                campo.value = data += '/';
+            } else
+                campo.value = data;
+        }
+    }
+</script>
+<div id="funcionarios">
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-8 col-12 text-center border-bottom">
+            <h4>Listagem de funcionários</h4>
+        </div>
+    </div>
+
+    <div class="row px-4">
+        <div class="col-12 col-md-8 col-lg-6 d-flex justify-content-center">
+            <a href="/admin/funcionario/create" class="btn btn-success mb-2">Cadastrar
+                Usuário</a>
+        </div>
+        <div class="col-12 col-md-4 d-flex justify-content-start">
+            <form action="/admin/funcionarios/filtro" method="POST" class="mb-2">
+                <div class="input-inline">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <a href="/admin/funcionarios" class="btn btn-dark" title="Limpar"><i class="fas fa-eraser text-white" title="Limpar"></i></a>
+                        </div>
+                        <input type="text" name="search" class="form-control" placeholder="Search" value="<?= $this->view->search ?>">
+                        <input type="text" name="data_criacao" class="form-control" placeholder="Data criação" value="<?= $this->view->dataCriacao ?>" maxlength="10" onkeypress="mascaraData( this, event )">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-info">
+                                <i class="fas fa-filter"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-2 d-flex justify-content-center px-1">
+        <div class="col-12 col-md-10">
+            <table class="table table-striped" id="tableFuncionarios">
+                <thead class="thead-dark rounded-top">
+                    <tr class="text-center" scope="row">
+                        <th scope="col">id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Saldo</th>
+                        <th scope="col">Administrador</th>
+                        <th scope="col">Data cadastro</th>
+                        <th class="d-none d-md-block">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $tot = 0;
+                    $nrqtd =  $this->view->data['encontrados'];
+
+                    if ($nrqtd == 0) {
+                    ?>
+                        <div class="alert alert-danger  alert-dismisseble text-center" role="alert">
+                            <button class="close" type="button" data-dismiss="alert">
+                                &times;
+                            </button>
+                            Nenhum resultado encontrado!
+                        </div>
+                    <?php
+                    }
+
+                    while ($tot < $nrqtd) { ?>
+                        <tr scope="row">
+                            <td><?= $this->view->data['data'][$tot]['id'] ?></td>
+                            <td><?= $this->view->data['data'][$tot]['nome_completo'] ?></td>
+                            <td>R$ <?= number_format($this->view->data['data'][$tot]['saldo_atual'], 2, ',', '.') ?></td>
+                            <td><?= $this->view->data['admin'] ?></td>
+                            <?php $data_criacao =  date('d-m-Y', strtotime($this->view->data['data'][$tot]['data_criacao'])) ?>
+                            <td><?= str_replace("-", "/", $data_criacao) ?></td>
+                            <td class="d-none d-md-block">
+                                <a href="/admin/funcionario/info?id=<?= $this->view->data['data'][$tot]['id'] ?>" class="btn
+                                btn-primary btn-xs" title="Alterar"><i class="fa fa-edit" title="Alterar"></i></a>
+                                <a href="/admin/funcionario/extract?id=<?= $this->view->data['data'][$tot]['id'] ?>" class="btn
+                                btn-primary btn-xs" title="Extrato"><i class="fas fa-address-book"></i></a>
+                                <a href="/admin/funcionario/delete?id=<?= $this->view->data['data'][$tot]['id'] ?>" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger
+                                btn-xs" title="Remover"><i class="fa fa-trash" title="Remover"></i></a>
+                            </td>
+                        </tr>
+                    <?php $tot++;
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-12 col-md-10 d-flex justify-content-md-end justify-content-center">
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php
+                    $counter = 0;
+                    $pages = $this->view->data['pages'];
+                    if ($nrqtd > 0) {
+                        do {
+                            $counter++;
+                    ?>
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/funcionarios?page=<?= $counter ?>"><?= $counter ?></a>
+                            </li>
+                        <?php
+                        } while ($counter < $pages);
+                    } else { ?>
+                        <li class="page-item">
+                            <a class="page-link" href="/admin/funcionarios">0</a>
+                        </li>
+                    <?php } ?>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+    </div>
+</div>
